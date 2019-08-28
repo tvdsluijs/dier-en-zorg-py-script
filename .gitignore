@@ -1,3 +1,11 @@
+.idea
+.idea/*
+
+config/*
+!config/config_sample.yml
+declaratie/*
+backup_declaratie/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
