@@ -1,7 +1,12 @@
 import os
+import pathlib
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime
+from time import sleep
 
 from functions.readConfig import readConfig
 
@@ -30,7 +35,7 @@ class ReaalDierFormulier:
     def start_formulier(self) -> bool:
         try:
             self.browser = webdriver.Chrome()
-            self.browser.get("https://www.reaaldierenzorg.nl/klantenservice/online-declareren/")
+            self.browser.get("https://formulieren.proteqcrm.nl/declaraties/dier_en_zorg")
 
             self.browser.find_element_by_id("contact_moment_policy_number").send_keys(self.cf.config['Polisnummer'])
             self.browser.find_element_by_id("contact_moment_relation_number").send_keys(self.cf.config['Relatienummer'])
@@ -68,14 +73,14 @@ class ReaalDierFormulier:
                 file_button.send_keys(self.declaratie_file)
 
             # Waarvoor bent u geweest?
-            select = Select(self.browser.find_element_by_id('contact_moment_documents_attributes_0_questions_attributes_0_question_11'))
-            # select.select_by_visible_text(self.cf.config['Waarvoor'])
-            select.select_by_value(self.cf.config['Waarvoor'])
+            self.browser.find_element_by_css_selector(f"select#contact_moment_documents_attributes_0_questions_attributes_0_question_11 > option[value='{self.cf.config['Waarvoor']}']").click()
 
-            # Wat is de klacht
-            select = Select(self.browser.find_element_by_id('contact_moment_documents_attributes_0_questions_attributes_0_question_12'))
-            # select.select_by_visible_text(self.cf.config['Klacht'])
-            select.select_by_value(self.cf.config['Klacht'])
+            sleep(2)  # ff wachten tot volgende selectbox gevuld is.
+            try:
+                # Klacht, dit zit in een try, want soms gaat dit helaas fout.
+                self.browser.find_element_by_css_selector(f"select#contact_moment_documents_attributes_0_questions_attributes_0_question_12 > option[value='{self.cf.config['Klacht']}']").click()
+            except Exception as e:
+                pass
 
             # wat checkboxes dat je akkoord gaat met alles
             self.browser.find_element_by_id("contact_moment_question_57").click()
@@ -91,14 +96,30 @@ class ReaalDierFormulier:
 
     def get_declaratie_file(self) -> bool:
         dir_path = os.path.dirname(os.path.realpath(__file__))
+
         declaratie_folder = os.path.join(dir_path, "declaratie")
+        self.check_create_folders(declaratie_folder)
+
         backup_folder = os.path.join(dir_path, "backup_declaratie")
+        self.check_create_folders(declaratie_folder)
+
         for root, dirs, filenames in os.walk(declaratie_folder):
             for fileName in filenames:
                 self.declaratie_file = os.path.join(declaratie_folder, fileName)
                 self.backup_file = os.path.join(backup_folder, fileName)
                 return True
         return False
+
+    def check_create_folders(self, folder: str = None) -> bool:
+        if folder is None:
+            return False
+        try:
+            p = pathlib.Path(folder)
+            p.mkdir(exist_ok=True)
+            return True
+        except Exception as e:
+            print(e)
+            return False
 
     def backup_declaratie_file(self) -> bool:
         try:
@@ -113,4 +134,10 @@ class ReaalDierFormulier:
 if __name__ == '__main__':
     rdf = ReaalDierFormulier()
 
-# 23/8/2019
+"""
+Alles zelf nalopen en dan zelf op Verzenden klikken.
+Als het goed is krijg je daarna te zien
+====================================================
+Uw declaratie is ontvangen
+We nemen zo spoedig mogelijk contact met u op
+"""

@@ -1,10 +1,10 @@
 Polisnummer: # te vinden op uw polis blad
 Relatienummer:  # te vinden op uw polis blad
-Uw_geboortedatum: # dit mag leeg blijven
-  dag: 14
-  maand: 5
-  jaar: 1975
-Dierenarts: "Dier en co"
-Dierenarts_tel: "011 284284838"
-Waarvoor:   #zoek het nummer op in de selectbox die je wilt gebruiken
-Klacht:   #zoek het nummer op in de selectbox die je wilt gebruiken
+Uw_geboortedatum:           # DEZE REGEL NIET INVULLEN !!!
+  dag: 14 # voorbeeld
+  maand: 5 # voorbeeld
+  jaar: 1975 # voorbeeld
+Dierenarts: "Dier en co" # voorbeeld
+Dierenarts_tel: "011 284284838" # voorbeeld
+Waarvoor: "225"         # voorbeeld: " huid, vacht of nagels" opgezicht in selectbox (value moet je hebben)
+Klacht: "230"           # voorbeeld: "allergie"  opgezicht in selectbox (value moet je hebben)
