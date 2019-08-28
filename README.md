@@ -1,6 +1,6 @@
 <img src="icon.png" align="right" />
 
-# Dier en Zorg README [![Translogger](https://badgen.net/badge/translogger/beta/cyan?icon=terminal)](https://github.com/tvdsluijs/translogger#readme)
+# Dier en Zorg README [![Dier en Zorg](https://badgen.net/badge/dier-en-zorg-py-script/beta/cyan?icon=terminal)](https://github.com/tvdsluijs/translogger#readme)
 
 Gek werd ik er van. Het formulier van de verzekering "Dier en Zorg". Ik was altijd het polis nummer en relatie nummer kwijt. Ook de juiste naam van mijn dierenarts en het telefoon nummer moest ik opzoeken.
 
@@ -17,14 +17,16 @@ Dus daarom dit script.
 - Het script is dus niet van het bedrijf achter "Dier en Zorg";
 - Ik verkoop het script niet en ik verdien dus niet aan dit script;
 - Het script mag je gratis gebruiken, als er iets fout gaat door het gebruik van het script (in de ruimste zin van het woord) is dat jouw probleem.
+- Het script vult in wat jij normaal zou invullen, mits je de config.yml juist invult. Het automatiseert dus je type-werk. Niets meer niets minder. Het volgt de normale formulier route die je als bezoeker ook zou volgen.
+- Mocht Dier en Zorg dit script toch niet leuk vinden, haal ik het offline. Ik hoop het niet, ik hoop dat ik koffie en gebak van ze krijg :-)
 
 ## Hoe starten
 
-Stap 1:
+**Stap 1:**
 
 Download dit script via `git clone git@github.com:tvdsluijs/dier-en-zorg-py-script.git`
 
-Stap 2:
+**Stap 2:**
 
 Maak een config.yml file aan in de config folder. Er staat een voorbeeld bestand.
 
