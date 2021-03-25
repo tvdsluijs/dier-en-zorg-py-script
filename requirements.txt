@@ -14,7 +14,7 @@ PyGithub==1.43.7
 Pygments==2.4.2
 PyJWT==1.7.1
 pylint==2.3.1
-PyYAML==5.1.1
+PyYAML==5.4
 readme-renderer==24.0
 requests==2.22.0
 requests-toolbelt==0.9.1
